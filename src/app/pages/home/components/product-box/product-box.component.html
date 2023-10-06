@@ -7,7 +7,9 @@
         <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
             <div>
                 <h5>{{product.category}}</h5>
+                <a routerLink="../product/{{product.id}}">
                 <p class="truncate hover:whitespace-normal">{{product.title}}</p>
+                </a>
                 <p *ngIf="fullWidthMode">{{product.description}}</p>
             </div>
             <div class="flex justify-between">

@@ -15,8 +15,10 @@ const ROWS_HEIGHT: {[id: number]: number } = {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit, OnDestroy {
-  category: string;
+  
+  category: string | undefined;
   itemsPerRow = 3;
   rowHeight = ROWS_HEIGHT[this.itemsPerRow];
   products: Array<Product> | undefined;

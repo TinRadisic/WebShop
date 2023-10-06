@@ -12,12 +12,12 @@ export class StoreService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProducts (limit = '12', sort = 'desc', category?: string): Observable<Array<Product>> {
+  getAllProducts (limit = '12', sort = 'desc', category: string): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>(
       `${STORE_BASE_URL}/products${
         category ? '/category' + category : ''       //check if product has category, otherwise pass empty string
       }?sort=${sort}&limit=${limit}`
-    )
+    );
   }
 
   getAllCategories(): Observable<Array<string>> {
@@ -25,4 +25,11 @@ export class StoreService {
       `${STORE_BASE_URL}/products/categories`
     )
   }
+
+  getProductById(productId: string): Observable<Product> {
+    return this.httpClient.get<Product>(
+      `${STORE_BASE_URL}/products/${productId}`
+    );
+  }
+  
 }

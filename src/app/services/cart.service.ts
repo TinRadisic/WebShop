@@ -25,7 +25,6 @@ export class CartService {
 
       this.cart.next({items});
       this._snackbar.open('Item added', 'OK', {duration: 3000});
-      console.log(this.cart.value);
     }
   
   removeItem(item: CartItem): void {

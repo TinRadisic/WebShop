@@ -1,5 +1,4 @@
 import { StoreService } from './../../../../services/store.service';
-import { outputAst } from '@angular/compiler';
 import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -9,25 +8,25 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit, OnDestroy {
+  
   @Output() showCategory = new EventEmitter<string>();
 
-  categoriesSubscription: Subscription
+  categoriesSubscription: Subscription;
 
   categories: Array<string> | undefined;
 
-  constructor (private storeService: StoreService) {
-
-  }
+  constructor (private storeService: StoreService) {}
 
   ngOnInit(): void {
-    this.categoriesSubscription = this.storeService.getAllCategories()
-    .subscribe ((response) => {
+    this.categoriesSubscription = this.storeService
+    .getAllCategories()
+    .subscribe ((response: Array<string>) => {
       this.categories = response;
-    })
+    });
   }
 
   onShowCategory (category: string): void {
-    this.showCategory.emit(category);
+    this.showCategory.next(category);
   }
 
   ngOnDestroy(): void {

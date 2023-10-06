@@ -25,6 +25,7 @@ import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MouseHoverDirective } from './directives/mouse-hover.directive';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MouseHoverDirective } from './directives/mouse-hover.directive';
     ProductBoxComponent,
     CartComponent,
     MouseHoverDirective,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
