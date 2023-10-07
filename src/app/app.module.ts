@@ -26,6 +26,9 @@ import { StoreService } from './services/store.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MouseHoverDirective } from './directives/mouse-hover.directive';
 import { ProductComponent } from './pages/product/product.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { ProductComponent } from './pages/product/product.component';
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]

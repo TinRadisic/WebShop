@@ -10,3 +10,24 @@
         </mat-list-option>
     </mat-selection-list>
 </mat-expansion-panel>
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            PRICE
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="price-range-container">
+        <mat-form-field class="price-input">
+            <input matInput placeholder="Minimum Price" type="number" [(ngModel)]="minPrice">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="price-input">
+            <input matInput placeholder="Maximum Price" type="number" [(ngModel)]="maxPrice">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" (click)="onApplyPriceRange()">Apply</button>
+    </div> 
+</mat-expansion-panel>
+
