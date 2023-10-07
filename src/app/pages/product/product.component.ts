@@ -32,4 +32,14 @@ export class ProductComponent implements OnInit {
   }
   
   constructor(private CartService: CartService, private storeService: StoreService, private route: ActivatedRoute) {}
+
+  onAddToCart(product: Product): void {
+    this.CartService.addToCart({
+      product: product.image,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      id: product.id
+    })
+  }
 }
