@@ -15,14 +15,14 @@ export class StoreService {
   getAllProducts (limit = '12', sort = 'desc', category: string): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>(
       `${STORE_BASE_URL}/products${
-        category ? '/category' + category : ''       //check if product has category, otherwise pass empty string
+        category ? '/category/' + category : ''       //check if product has category, otherwise pass empty string
       }?sort=${sort}&limit=${limit}`
     );
   }
 
   getAllCategories(): Observable<Array<string>> {
     return this.httpClient.get<Array<string>>(
-      `${STORE_BASE_URL}/products/categories`
+      `${STORE_BASE_URL}/products/categories/`
     )
   }
 

@@ -1,33 +1,57 @@
 <mat-expansion-panel *ngIf="categories">
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            CATEGORIES
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-selection-list [multiple]="false">   <!--  Only allows selecting one item  -->
-        <mat-list-option *ngFor="let category of categories" [value]="category">        <!--forms a button for each category of products-->
-            <button (click)="onShowCategory(category)">{{category}}</button>
-        </mat-list-option>
-    </mat-selection-list>
+  <mat-expansion-panel-header>
+    <mat-panel-title> CATEGORIES </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-selection-list [multiple]="false">
+    <!--  Only allows selecting one item  -->
+    <mat-list-option
+      *ngFor="let category of categories"
+      (click)="onShowCategory(category)"
+      [value]="category"
+    >
+      <!--forms a button for each category of products-->
+      <button>{{ category }}</button>
+    </mat-list-option>
+  </mat-selection-list>
 </mat-expansion-panel>
-<mat-expansion-panel>
+<form (ngSubmit)="onApplyPriceRange(f)" #f="ngForm">
+  <mat-expansion-panel>
     <mat-expansion-panel-header>
-        <mat-panel-title>
-            PRICE
-        </mat-panel-title>
+      <mat-panel-title> PRICE </mat-panel-title>
     </mat-expansion-panel-header>
-    <div class="price-range-container">
-        <mat-form-field class="price-input">
-            <input matInput placeholder="Minimum Price" type="number" [(ngModel)]="minPrice">
-        </mat-form-field>
+    <div>
+      <mat-form-field class="price-input">
+        <input
+          matInput
+          placeholder="Minimum Price"
+          type="number"
+          [(ngModel)]="minPrice"
+          name="minPrice"
+          min="0"
+        />
+      </mat-form-field>
     </div>
     <div>
-        <mat-form-field class="price-input">
-            <input matInput placeholder="Maximum Price" type="number" [(ngModel)]="maxPrice">
-        </mat-form-field>
+      <mat-form-field class="price-input">
+        <input
+          matInput
+          placeholder="Maximum Price"
+          type="number"
+          [(ngModel)]="maxPrice"
+          name="maxPrice"
+          max="10000"
+        />
+      </mat-form-field>
     </div>
     <div>
-        <button mat-raised-button color="primary" (click)="onApplyPriceRange()">Apply</button>
-    </div> 
-</mat-expansion-panel>
-
+      <button mat-raised-button color="primary" (click)="(onApplyPriceRange)">
+        Apply
+      </button>
+    </div>
+  </mat-expansion-panel>
+  <div>
+    <button mat-raised-button color="primary" (click)="refresh()">
+      Clear all filters
+    </button>
+  </div>
+</form>

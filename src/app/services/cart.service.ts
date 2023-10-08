@@ -32,7 +32,7 @@ export class CartService {
       let filteredItems = this.cart.value.items.map((_item) => {
         if (_item.id === item.id){
           _item.quantity--;
-          if (_item.id === 0){
+          if (_item.quantity === 0){
             itemForRemoval = _item;
           }
         }
@@ -40,7 +40,7 @@ export class CartService {
       });
 
       if(itemForRemoval) {
-        filteredItems = this.removeFromCart(itemForRemoval, false);
+        filteredItems = this.removeFromCart(itemForRemoval, true);
       }
 
       this.cart.next({ items: filteredItems});
