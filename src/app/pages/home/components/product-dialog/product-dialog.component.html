@@ -1,0 +1,31 @@
+<mat-card ngClass="custom-card text-left">
+    <img class="mb-1 mx-auto h-[400px]"
+    [ngClass]="'h-400px'"   
+    [src]="product.image"
+    />                                                      
+    <div>
+        <div>
+            <p class="text-2xl mb-2 mt-5">
+                <b> Category: </b>
+                {{product.category}}
+            </p>
+            <p class="text-2xl mb-2">
+                <b> Title: </b>
+                {{product.title}}
+            </p>
+            <p class="text-2xl mb-2">
+                <b> Description: </b>
+                {{product.description}}
+            </p>
+            <p class="text-2xl mb-2">
+                <b> Price: </b>
+                {{product.price | currency:'BAM'}}
+            </p>
+        </div>
+        <div class="flex justify-center mb-3">
+            <!-- <button mat-raised-button appMouseHover (click)="onAddToCart(product)">
+                Add to cart
+            </button> -->
+        </div>
+    </div>
+</mat-card>

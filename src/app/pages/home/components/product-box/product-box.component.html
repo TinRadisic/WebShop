@@ -1,23 +1,31 @@
-<mat-card [ngClass]="{'text-center': fullWidthMode}">       <!-- Center text only if show 1 coloumn is selected -->
-    <div [ngClass]="{'flex': fullWidthMode}">
-        <img class="mb-1 mx-auto h-[200px]"
-        [ngClass]="{'h-200px': !fullWidthMode,'h-[360px]': fullWidthMode}"   
-        [src]="product.image"
-        />                                                       <!-- Image height at 200px if page is not at 1 column and 300 otherwise -->
-        <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
-            <div>
-                <h5>{{product.category}}</h5>
-                <a routerLink="../product/{{product.id}}">
-                <p class="truncate hover:whitespace-normal">{{product.title}}</p>
-                </a>
-                <p *ngIf="fullWidthMode">{{product.description}}</p>
-            </div>
-            <div class="flex justify-between">
-                <span class="text-red-400"> {{ product.price  | currency:'BAM'}}</span>
-                <button appMouseHover (click)="onAddToCart()">
-                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
-                </button>
-            </div>
-        </div>
+<mat-card [ngClass]="{ 'text-center': fullWidthMode }">
+  <!-- Center text only if show 1 coloumn is selected -->
+  <div [ngClass]="{ flex: fullWidthMode }">
+    <img
+      class="mb-1 mx-auto h-[200px]"
+      [ngClass]="{ 'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode }"
+      [src]="product.image"
+    />
+    <!-- Image height at 200px if page is not at 1 column and 300 otherwise -->
+    <div
+      class="w-full"
+      [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
+    >
+      <div>
+        <h5>{{ product.category }}</h5>
+        <a (click)="openDialog(product)">
+          <p class="truncate hover:whitespace-normal">{{ product.title }}</p>
+        </a>
+        <p *ngIf="fullWidthMode">{{ product.description }}</p>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-red-400">
+          {{ product.price | currency : "BAM" }}</span
+        >
+        <button appMouseHover (click)="onAddToCart()">
+          <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+        </button>
+      </div>
     </div>
+  </div>
 </mat-card>

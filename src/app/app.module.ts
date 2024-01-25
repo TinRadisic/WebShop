@@ -29,6 +29,8 @@ import { ProductComponent } from './pages/product/product.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { ProductDialogComponent } from './pages/home/components/product-dialog/product-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { FormsModule } from '@angular/forms';
     CartComponent,
     MouseHoverDirective,
     ProductComponent,
+    ProductDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +64,10 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
   ],
   providers: [CartService, StoreService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
