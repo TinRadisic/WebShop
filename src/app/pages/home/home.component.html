@@ -1,22 +1,38 @@
-<mat-drawer-container [autosize]="true" class="min-h-full max-w-7x1 mx-auto border-x">
-    <mat-drawer mode="side" opened class="p-6">
-        <app-filters (showCategory)="onShowCategory($event)" (showPrice)="onPriceReceived($event)"></app-filters>
-    </mat-drawer>
-    <mat-drawer-content class="p-6">
-        <app-products-header 
-        (columnsCountChange)="onColumnsCountChange($event)"
-        (itemsCountChange)="onItemsCountChange($event)"
-        (sortChange)="onSortChange($event)"
-        ></app-products-header>
-        <mat-grid-list gutterSize="16" [cols]="itemsPerRow" [rowHeight]="rowHeight">
-            <mat-grid-tile *ngFor="let product of products">        <!--TODO: *ngFor="let products of filteredProducts" use for filtering by price -->
-                <app-product-box 
-                [product] = "product"
-                (addToCart)="onAddToCart($event)"
-                class="w-full" 
-                [fullWidthMode]="itemsPerRow === 1">
-                </app-product-box>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </mat-drawer-content>
+<mat-drawer-container
+  [autosize]="true"
+  class="min-h-full max-w-7x1 mx-auto border-x"
+>
+  <mat-drawer mode="side" opened class="p-6">
+    <app-filters
+      (showCategory)="onShowCategory($event)"
+      (showPrice)="onPriceReceived($event)"
+    ></app-filters>
+  </mat-drawer>
+  <mat-drawer-content class="p-6">
+    <app-products-header
+      (columnsCountChange)="onColumnsCountChange($event)"
+      (itemsCountChange)="onItemsCountChange($event)"
+      (sortChange)="onSortChange($event)"
+    ></app-products-header>
+    <mat-grid-list gutterSize="16" [cols]="itemsPerRow" [rowHeight]="rowHeight">
+      <mat-grid-tile *ngFor="let product of products">
+        <!--TODO: *ngFor="let products of filteredProducts" use for filtering by price -->
+        <app-product-box
+          [product]="product"
+          (addToCart)="onAddToCart($event)"
+          class="w-full"
+          [fullWidthMode]="itemsPerRow === 1"
+        >
+        </app-product-box>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-paginator
+      [length]="20"
+      [pageSize]="12"
+      [pageSizeOptions]="[12, 24, 36]"
+      aria-label="Select page"
+      (page-size)="onItemsCountChange($event)"
+    >
+    </mat-paginator>
+  </mat-drawer-content>
 </mat-drawer-container>

@@ -31,6 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { ProductDialogComponent } from './pages/home/components/product-dialog/product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -64,8 +65,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,
+    FormsModule,  
     MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent],

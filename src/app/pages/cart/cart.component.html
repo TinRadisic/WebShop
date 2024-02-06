@@ -1,75 +1,116 @@
-<mat-card class="max-w-7x1 mx-auto" *ngIf="cart.items.length">    <!-- show only if we have length of cart items, otherwise show message down below -->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
-        <ng-container matColumnDef="product">       <!-- 'product' is a key which is accessed throught datasource from cart.component.ts -->
-            <th mat-header-cell *matHeaderCellDef>Product</th>               <!-- table header -->
-            <td mat-cell *matCellDef="let element">                     <!-- defining name of element, and we access property from the object through this -->
-                <img src="{{element.product}}" alt="product" class="w-100px my-2"/>
-            </td>
-            <td mat-footer-cell *matFooterCellDef>
-                <button mat-raised-button routerLink="/home">Continue shopping</button>
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="name">       
-            <th mat-header-cell *matHeaderCellDef>Name</th>               
-            <td mat-cell *matCellDef="let element">                   
-                <span class="truncate max-w-xs block">{{element.name}}</span>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
-        <ng-container matColumnDef="price">       
-            <th mat-header-cell *matHeaderCellDef>Price</th>               
-            <td mat-cell *matCellDef="let element">                   
-                <span class="truncate max-w-xs">{{ element.price | currency: 'BAM ' }}</span>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
-        <ng-container matColumnDef="quantity">       
-            <th mat-header-cell *matHeaderCellDef>Quantity</th>               
-            <td mat-cell *matCellDef="let element">                   
-                <span class="truncate max-w-xs">
-                    <button (click)="onRemoveItem(element)" mat-icon-button>
-                        <mat-icon>remove</mat-icon>
-                    </button>
-                    <span>{{element.quantity}}</span>
-                    <button (click)="onAddItem(element)" mat-icon-button>
-                        <mat-icon>add</mat-icon>
-                    </button>
-                </span>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
-        <ng-container matColumnDef="total">       
-            <th mat-header-cell *matHeaderCellDef>Total</th>               
-            <td mat-cell *matCellDef="let element">{{ element.quantity * element.price | currency:'BAM ' }}</td>
-            <td mat-footer-cell *matFooterCellDef> 
-                <span class="font-bold py-5 block">
-                   Total: {{getTotal(cart.items) | currency:'BAM '}}
-                </span>
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="action">       
-            <th mat-header-cell *matHeaderCellDef>
-                <button (click)="onClearCart($event)" mat-raised-button color="warn" class="float-right">
-                    Clear All
-                </button>
-            </th>               
-            <td mat-cell *matCellDef="let element"> 
-                <button (click)="onRemoveFromCart(element)" mat-mini-fab color="warn" class="float-right">
-                    <mat-icon>close</mat-icon>
-                </button>                  
-            </td>
-            <td mat-footer-cell *matFooterCellDef>
-                <button mat-raised-button color="primary" class="float-right">
-                    Checkout
-                </button>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>           <!-- loop through items -->
-        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-    </table>
+<mat-card class="max-w-7x1 mx-auto" *ngIf="cart.items.length">
+  <!-- show only if we have length of cart items, otherwise show message down below -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+    <ng-container matColumnDef="product">
+      <!-- 'product' is a key which is accessed throught datasource from cart.component.ts -->
+      <th mat-header-cell *matHeaderCellDef>Product</th>
+      <!-- table header -->
+      <td mat-cell *matCellDef="let element">
+        <!-- defining name of element, and we access property from the object through this -->
+        <img src="{{ element.product }}" alt="product" class="w-100px my-2" />
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <button mat-raised-button routerLink="/home">Continue shopping</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">
+        <span class="truncate max-w-xs block">{{ element.name }}</span>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let element">
+        <span class="truncate max-w-xs">{{
+          element.price | currency : "BAM "
+        }}</span>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let element">
+        <span class="truncate max-w-xs">
+          <button (click)="onRemoveItem(element)" mat-icon-button>
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span>{{ element.quantity }}</span>
+          <button (click)="onAddItem(element)" mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
+        </span>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.quantity * element.price | currency : "BAM " }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <span class="font-bold py-5 block">
+          Total: {{ getTotal(cart.items) | currency : "BAM " }}
+        </span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+        <button
+          (click)="onClearCart($event)"
+          mat-raised-button
+          color="warn"
+          class="float-right"
+        >
+          Clear All
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          (click)="onRemoveFromCart(element)"
+          mat-mini-fab
+          color="warn"
+          class="float-right"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <button mat-raised-button color="primary" class="float-right">
+          Checkout
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <!-- loop through items -->
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
 </mat-card>
-<mat-card class="max-w-7x1 mx-auto" *ngIf="!cart.items.length">
-    <p>Your cart is empty</p>
-    <button mat-raised-button routerLink="/home">Start shopping</button>
-</mat-card>
+<div class="container-fluid mt-100">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body cart">
+          <div class="col-sm-12 empty-cart-cls text-center">
+            <img
+              src="https://iticsystem.com/img/empty-cart.png"
+              width="300"
+              height="300"
+              class="img-fluid mb-4 mr-3"
+            />
+            <a
+              href="#"
+              class="btn btn-primary cart-btn-transform m-3 btn-lg"
+              data-abc="true"
+              style="position: relative; bottom: -10px;"
+              >Continue shopping</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

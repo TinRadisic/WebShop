@@ -11,6 +11,7 @@ import {
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { FilterService } from 'src/app/services/filter.service';
+import { ProductsHeaderComponent } from './components/products-header/products-header.component';
 
 const ROWS_HEIGHT: { [id: number]: number } = {
   1: 400,
@@ -25,6 +26,8 @@ const ROWS_HEIGHT: { [id: number]: number } = {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   receivedPrice: IPriceFilter;
+
+  pageSize : 12;
 
   onPriceReceived(data: IPriceFilter) {
     this.receivedPrice = data;
@@ -115,4 +118,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sort = newSort;
     this.getProducts();
   }
+
+  /* onPageSizeChange(count: number): void {
+    this.itemsShowCount= count;
+    this.onItemsCountChange.emit(count);
+  } */
 }
